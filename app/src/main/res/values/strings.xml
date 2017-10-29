@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Visit Canary</string>
+
+    <string name="title_place_map">Map of Places to Visit in Canary</string>
+    <string name="title_place_list">List of Places to Visit in Canary</string>
+    <string name="title_place_detail">Place to Visit in Canary</string>
+    <string name="title_activity_main">Places to Visit in Canary</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="nav_menu_title">Visit Canary</string>
+    <string name="nav_menu_subtitle">Master EITE (ULPGC)</string>
+
+
+    <string name="app_intro">Beautiful island scenery, gorgeous beaches, and picturesque colonial towns await visitors to the Canary Islands.\n\nA legacy of the Spanish colonies, this archipelago of seven large and six smaller islands lies 200 kilometers off the northwest coast of Morocco and Western Sahara Africa. No one is sure how the Canaries got their name, but one explanation is that the singing birds known to the ancient Romans as canora made a home on the islands.\n\nThe largest of the Canary Islands is Tenerife, which boasts many top tourist sights including the UNESCO-listed city of San Cristobal de la Laguna. Both Gran Canaria and La Palma islands have UNESCO Biosphere Reserves as well as cultural attractions such as Baroque churches, museums, and traditional festivals. Charming fishing villages are found on Lanzarote Island, and undiscovered sandy shores line the island of Fuerteventura.</string>
+</resources>
