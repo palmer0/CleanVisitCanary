@@ -1,4 +1,4 @@
-package es.ulpgc.eite.master.cleanvisitcanary;
+package es.ulpgc.eite.master.cleanvisitcanary.models;
 
 import org.json.JSONException;
 import org.json.JSONObject;

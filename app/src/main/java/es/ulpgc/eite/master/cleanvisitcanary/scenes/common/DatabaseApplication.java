@@ -1,4 +1,4 @@
-package es.ulpgc.eite.master.cleanvisitcanary;
+package es.ulpgc.eite.master.cleanvisitcanary.scenes.common;
 
 import android.app.Application;
 
@@ -24,7 +24,6 @@ public class DatabaseApplication extends Application {
         RealmConfiguration realmConfig = new RealmConfiguration.Builder()
                 .name("visitcanary.realm")
                 .schemaVersion(1)
-                //.migration(new Migration())
                 .build();
         Realm.setDefaultConfiguration(realmConfig);
     }

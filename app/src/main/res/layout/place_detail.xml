@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="es.ulpgc.eite.master.cleanvisitcanary.PlaceDetailActivity">
+    tools:context="es.ulpgc.eite.master.cleanvisitcanary.scenes.detail.PlaceDetailActivity">
 
 
     <ImageView

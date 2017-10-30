@@ -1,27 +1,19 @@
-package es.ulpgc.eite.master.cleanvisitcanary;
+package es.ulpgc.eite.master.cleanvisitcanary.scenes.detail;
 
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import es.ulpgc.eite.master.cleanvisitcanary.scenes.common.BaseActivity;
+import es.ulpgc.eite.master.cleanvisitcanary.models.Place;
+import es.ulpgc.eite.master.cleanvisitcanary.R;
+
 
 public class PlaceDetailActivity extends BaseActivity {
 
     public static final String PARAM_PLACE_ID = "place_to_visit_id";
 
-    //private PlaceStore placeStore;
-
-    /*
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        fillPlaceStoreFromResources();
-        setupUI();
-
-    }
-    */
 
     @Override
     protected void setupUI(){
@@ -42,17 +34,6 @@ public class PlaceDetailActivity extends BaseActivity {
         }
     }
 
-    /*
-    private void fillPlaceStoreFromResources(){
-        Resources res = getResources();
-        List<String> titles = Arrays.asList(res.getStringArray(R.array.places_titles));
-        List<String> details = Arrays.asList(res.getStringArray(R.array.places_details));
-        List<String> pictures = Arrays.asList(res.getStringArray(R.array.places_pictures));
-        List<String> locations = Arrays.asList(res.getStringArray(R.array.places_locations));
-
-        placeStore = new PlaceStore(titles, details, pictures, locations);
-    }
-    */
 
     private void setupToolbar(String title) {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -65,21 +46,6 @@ public class PlaceDetailActivity extends BaseActivity {
             actionbar.setTitle(title);
         }
     }
-
-
-
-    /*
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == android.R.id.home) {
-            //navigateUpTo(new Intent(this, PlaceListActivity.class));
-            //return true;
-            finish();
-        }
-        return super.onOptionsItemSelected(item);
-    }
-    */
 
 
 }
