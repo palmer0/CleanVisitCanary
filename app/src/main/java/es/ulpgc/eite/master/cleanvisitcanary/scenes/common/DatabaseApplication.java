@@ -2,6 +2,7 @@ package es.ulpgc.eite.master.cleanvisitcanary.scenes.common;
 
 import android.app.Application;
 
+import es.ulpgc.eite.master.cleanvisitcanary.models.PlaceStore;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
@@ -9,7 +10,10 @@ import io.realm.RealmConfiguration;
  * Created by imac on 29/10/17.
  */
 
-public class DatabaseApplication extends Application {
+public class DatabaseApplication extends Application implements ManagedStore {
+
+
+    private PlaceStore placeStore;
 
     @Override
     public void onCreate() {
@@ -28,4 +32,14 @@ public class DatabaseApplication extends Application {
         Realm.setDefaultConfiguration(realmConfig);
     }
 
+    @Override
+    public void setPlaceStore(PlaceStore placeStore) {
+        this.placeStore = placeStore;
+
+    }
+
+    @Override
+    public PlaceStore getPlaceStore() {
+        return placeStore;
+    }
 }

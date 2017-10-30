@@ -10,11 +10,11 @@ import es.ulpgc.eite.master.cleanvisitcanary.scenes.list.contracts.PlaceListPres
 
 public class PlaceListOnCreateRequest {
 
-    public final PlaceListPresenterOutput listView;
+    public final PlaceListPresenterOutput viewController;
     public RecyclerView recyclerView;
 
-    public PlaceListOnCreateRequest(PlaceListPresenterOutput listView) {
-        this.listView = listView;
+    public PlaceListOnCreateRequest(PlaceListPresenterOutput viewController) {
+        this.viewController = viewController;
     }
 
 }

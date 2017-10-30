@@ -21,20 +21,19 @@ public class PlaceStore {
     private Realm realmDatabase;
     private RealmResults<Place> places;
 
-    public PlaceStore(Context managedContext){
+    public PlaceStore(Context managedContext) {
         this.managedContext = managedContext;
         realmDatabase = Realm.getDefaultInstance();
         fillPlaceStoreFromDatabase();
     }
 
 
-
-    private void fillPlaceStoreFromDatabase(){
+    private void fillPlaceStoreFromDatabase() {
         places = realmDatabase.where(Place.class).findAll();
         //places = places.sort("title");
         places = places.sort(Place.KEY_TITLE);
 
-        if(places.isEmpty()){
+        if (places.isEmpty()) {
             fillPlaceStoreFromAssets();
         }
     }
@@ -62,8 +61,7 @@ public class PlaceStore {
     }
 
 
-
-    private void fillPlaceStoreFromAssets(){
+    private void fillPlaceStoreFromAssets() {
 
         List<String> titles = new ArrayList();
         List<String> descriptions = new ArrayList();
@@ -71,7 +69,7 @@ public class PlaceStore {
         List<String> locations = new ArrayList();
 
         JSONArray array = loadJSONFromAssets("places.json");
-        for(int index=0; index < array.length(); index++){
+        for (int index = 0; index < array.length(); index++) {
             try {
 
                 JSONObject obj = array.getJSONObject(index);
@@ -115,10 +113,9 @@ public class PlaceStore {
     }
 
 
-
-    public JSONArray toJSONArray () {
+    public JSONArray toJSONArray() {
         JSONArray array = new JSONArray();
-        for(Place place: places) {
+        for (Place place : places) {
             JSONObject obj = place.toJSONObject();
             Log.d("JSONObject", obj.toString());
             array.put(obj);
@@ -128,7 +125,7 @@ public class PlaceStore {
         return array;
     }
 
-    private void createPlace(String id, String title, String desc, String pic, String loc ) {
+    private void createPlace(String id, String title, String desc, String pic, String loc) {
         Place place = realmDatabase.createObject(Place.class, id);
         place.setTitle(title);
         place.setDescription(desc);
@@ -140,7 +137,7 @@ public class PlaceStore {
     }
 
 
-    public List<Place> getPlaces(){
+    public List<Place> getPlaces() {
         return places;
     }
 

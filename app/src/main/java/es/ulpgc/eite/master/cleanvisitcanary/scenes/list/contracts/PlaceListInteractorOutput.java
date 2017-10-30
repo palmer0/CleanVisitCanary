@@ -2,6 +2,8 @@ package es.ulpgc.eite.master.cleanvisitcanary.scenes.list.contracts;
 
 import android.content.Context;
 
+import es.ulpgc.eite.master.cleanvisitcanary.scenes.common.ManagedStore;
+
 /**
  * Created by imac on 30/10/17.
  */
@@ -9,4 +11,5 @@ import android.content.Context;
 public interface PlaceListInteractorOutput {
 
     Context getManagedContext();
+    ManagedStore getManagedStore();
 }

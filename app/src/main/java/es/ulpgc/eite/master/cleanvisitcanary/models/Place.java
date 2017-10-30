@@ -15,8 +15,8 @@ public class Place extends RealmObject {
 
     public static final String KEY_TITLE = "title";
     public static final String KEY_DESC = "description";
-    public static final String KEY_PIC= "picture";
-    public static final String KEY_LOC= "location";
+    public static final String KEY_PIC = "picture";
+    public static final String KEY_LOC = "location";
 
     @Required
     @PrimaryKey
@@ -41,7 +41,6 @@ public class Place extends RealmObject {
         this.picture = picture;
         this.location = location;
     }
-
 
 
     public String getId() {
@@ -84,9 +83,9 @@ public class Place extends RealmObject {
         this.location = location;
     }
 
-    public JSONObject toJSONObject () {
+    public JSONObject toJSONObject() {
 
-        JSONObject obj = new JSONObject() ;
+        JSONObject obj = new JSONObject();
 
         try {
 

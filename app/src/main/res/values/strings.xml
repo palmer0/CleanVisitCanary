@@ -4,7 +4,7 @@
     <string name="title_place_map">Map of Places to Visit in Canary</string>
     <string name="title_place_list">List of Places to Visit in Canary</string>
     <string name="title_place_detail">Place to Visit in Canary</string>
-    <string name="title_activity_main">Places to Visit in Canary</string>
+    <string name="title_intro">Places to Visit in Canary</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

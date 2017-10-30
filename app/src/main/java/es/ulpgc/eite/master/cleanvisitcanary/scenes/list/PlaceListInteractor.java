@@ -4,6 +4,7 @@ package es.ulpgc.eite.master.cleanvisitcanary.scenes.list;
 import android.content.Context;
 
 import es.ulpgc.eite.master.cleanvisitcanary.models.PlaceStore;
+import es.ulpgc.eite.master.cleanvisitcanary.scenes.common.ManagedStore;
 import es.ulpgc.eite.master.cleanvisitcanary.scenes.list.contracts.PlaceListInteractorInput;
 import es.ulpgc.eite.master.cleanvisitcanary.scenes.list.contracts.PlaceListInteractorOutput;
 import es.ulpgc.eite.master.cleanvisitcanary.scenes.list.contracts.PlaceListPresenterInput;
@@ -18,51 +19,42 @@ import es.ulpgc.eite.master.cleanvisitcanary.workers.PlaceStoreWorker;
 public class PlaceListInteractor implements PlaceListInteractorInput {
 
 
-    private PlaceStore placeStore;
-    private PlaceListPresenterInput listPresenter;
-    //private PlaceListPresenterOutput listView;
-    private PlaceListInteractorOutput listView;
+    public PlaceListPresenterInput presenter;
+    private PlaceListInteractorOutput viewController;
+    //private PlaceStore placeStore;
 
-    public PlaceListInteractor(PlaceListInteractorOutput listView) {
-        this.listView = listView;
+    public PlaceListInteractor(PlaceListInteractorOutput viewController) {
+        this.viewController = viewController;
     }
 
-    /*
-    public PlaceListInteractor(PlaceListPresenterOutput listView) {
-        this.listView = listView;
-        listPresenter = new PlaceListPresenter(listView);
-    }
-    */
-
-    /*
-    public PlaceListInteractor() {
-        listView = null;
-    }
-    */
 
     @Override
     public void onCreate(final PlaceListOnCreateRequest request) {
-        //listView = request.listView;
+        final Context managedContext = viewController.getManagedContext();
+        final ManagedStore managedStore = viewController.getManagedStore();
 
-        Context managedContext = listView.getManagedContext();
         PlaceStoreWorker storeWorker = new PlaceStoreWorker();
-        storeWorker.loadStore(managedContext, new PlaceStoreWorker.OnPlaceStoreLoaderHandler() {
+        storeWorker.loadStore(managedContext, new PlaceStoreWorker.PlaceStoreLoaderHandler() {
 
             @Override
             public void onPlaceStoreLoaded(PlaceStore placeStore) {
-                setupPlaceStore(placeStore);
+                //setPlaceStore(placeStore);
+                managedStore.setPlaceStore(placeStore);
 
-                listPresenter = new PlaceListPresenter(request.listView);
+                //presenter = new PlaceListPresenter(request.viewController);
                 PlaceListOnCreateResponse response = new PlaceListOnCreateResponse();
                 response.recyclerView = request.recyclerView;
                 response.placeStore = placeStore;
-                listPresenter.onCreate(response);
+                presenter.onCreate(response);
             }
         });
 
     }
 
-    private void setupPlaceStore(PlaceStore placeStore){
+    /*
+    private void setPlaceStore(PlaceStore placeStore) {
         this.placeStore = placeStore;
     }
+    */
+
 }

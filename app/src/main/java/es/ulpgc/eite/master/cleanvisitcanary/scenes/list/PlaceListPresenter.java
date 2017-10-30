@@ -15,6 +15,7 @@ import es.ulpgc.eite.master.cleanvisitcanary.models.PlaceStore;
 import es.ulpgc.eite.master.cleanvisitcanary.scenes.list.contracts.PlaceListPresenterInput;
 import es.ulpgc.eite.master.cleanvisitcanary.scenes.list.contracts.PlaceListPresenterOutput;
 import es.ulpgc.eite.master.cleanvisitcanary.scenes.list.models.PlaceListOnCreateResponse;
+import es.ulpgc.eite.master.cleanvisitcanary.scenes.list.models.PlaceListOnCreateViewModel;
 
 /**
  * Created by imac on 30/10/17.
@@ -22,24 +23,26 @@ import es.ulpgc.eite.master.cleanvisitcanary.scenes.list.models.PlaceListOnCreat
 
 class PlaceListPresenter implements PlaceListPresenterInput {
 
-    private final PlaceListPresenterOutput listView;
+    public PlaceListPresenterOutput viewController;
 
-    public PlaceListPresenter(PlaceListPresenterOutput listView) {
-        this.listView = listView;
+    public PlaceListPresenter(PlaceListPresenterOutput viewController) {
+        this.viewController = viewController;
     }
 
     @Override
     public void onCreate(PlaceListOnCreateResponse response) {
-        if(listView != null){
-            Context managedContext = listView.getManagedContext();
+        if (viewController != null) {
+            Context managedContext = viewController.getManagedContext();
             String title = managedContext.getString(R.string.title_place_list);
-            listView.setupUI(title);
+            viewController.setupUI(title);
             setupRecyclerView(response.recyclerView, response.placeStore);
         }
     }
 
     private void setupRecyclerView(RecyclerView recyclerView, PlaceStore placeStore) {
-        recyclerView.setAdapter(new PlaceRecyclerViewAdapter(placeStore.getPlaces()));
+        if (recyclerView != null) {
+            recyclerView.setAdapter(new PlaceRecyclerViewAdapter(placeStore.getPlaces()));
+        }
     }
 
 
@@ -68,12 +71,22 @@ class PlaceListPresenter implements PlaceListPresenterInput {
 
                 @Override
                 public void onClick(View view) {
-                    if(listView != null) {
-                        listView.goToPlaceDetails(holder.placeItem.id);
-                    }
+                    onItemListClicked(holder.placeItem.id);
 
+                    /*
+                    if (viewController != null) {
+                        viewController.goToPlaceDetails(holder.placeItem.id);
+                    }
+                    */
                 }
             });
+        }
+
+        private void onItemListClicked(String placeId){
+            if (viewController != null) {
+                PlaceListOnCreateViewModel viewModel = new PlaceListOnCreateViewModel(placeId);
+                viewController.goToPlaceDetails(viewModel);
+            }
         }
 
         @Override
@@ -98,5 +111,7 @@ class PlaceListPresenter implements PlaceListPresenterInput {
             }
         }
     }
+
+
 
 }

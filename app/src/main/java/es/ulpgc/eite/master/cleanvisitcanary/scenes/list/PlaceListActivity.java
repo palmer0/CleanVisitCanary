@@ -1,22 +1,24 @@
 package es.ulpgc.eite.master.cleanvisitcanary.scenes.list;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.RecyclerView;
 
-import es.ulpgc.eite.master.cleanvisitcanary.scenes.common.BaseActivity;
 import es.ulpgc.eite.master.cleanvisitcanary.R;
+import es.ulpgc.eite.master.cleanvisitcanary.scenes.common.BaseActivity;
+import es.ulpgc.eite.master.cleanvisitcanary.scenes.list.contracts.PlaceListInteractorInput;
 import es.ulpgc.eite.master.cleanvisitcanary.scenes.list.contracts.PlaceListInteractorOutput;
 import es.ulpgc.eite.master.cleanvisitcanary.scenes.list.contracts.PlaceListPresenterOutput;
 import es.ulpgc.eite.master.cleanvisitcanary.scenes.list.models.PlaceListOnCreateRequest;
+import es.ulpgc.eite.master.cleanvisitcanary.scenes.list.models.PlaceListOnCreateViewModel;
 
 
 public class PlaceListActivity extends BaseActivity
         implements PlaceListInteractorOutput, PlaceListPresenterOutput {
 
 
-    private PlaceListInteractor listInteractor;
+    public PlaceListInteractorInput interactor;
+    public PlaceListRouter router;
 
 
     @Override
@@ -26,12 +28,11 @@ public class PlaceListActivity extends BaseActivity
         setContentView(R.layout.activity_place_list_main);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.place_list);
 
-        listInteractor = new PlaceListInteractor(this);
-        //PlaceListOnCreateRequest request = new PlaceListOnCreateRequest();
-        //listInteractor = new PlaceListInteractor();
+        PlaceListConfigurator.instance.configure(this);
+        //interactor = new PlaceListInteractor(this);
         PlaceListOnCreateRequest request = new PlaceListOnCreateRequest(this);
         request.recyclerView = recyclerView;
-        listInteractor.onCreate(request);
+        interactor.onCreate(request);
     }
 
 
@@ -50,8 +51,9 @@ public class PlaceListActivity extends BaseActivity
     }
 
     @Override
-    public Context getManagedContext() {
-        return this;
+    public void goToPlaceDetails(PlaceListOnCreateViewModel viewModel) {
+        //goToPlaceDetails(viewModel.placeId);
+        router.goToPlaceDetails(viewModel.placeId);
     }
 
 
@@ -76,9 +78,9 @@ public class PlaceListActivity extends BaseActivity
 
         @Override
         public PlaceViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext())
+            View viewController = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.place_list_content, parent, false);
-            return new PlaceViewHolder(view);
+            return new PlaceViewHolder(viewController);
         }
 
         @Override
@@ -89,7 +91,7 @@ public class PlaceListActivity extends BaseActivity
             holder.placeView.setOnClickListener(new View.OnClickListener() {
 
                 @Override
-                public void onClick(View view) {
+                public void onClick(View viewController) {
                     goToPlaceDetails(holder.placeItem.id);
 
                 }
@@ -106,10 +108,10 @@ public class PlaceListActivity extends BaseActivity
             public final TextView placeTitleView;
             public Place placeItem;
 
-            public PlaceViewHolder(View view) {
-                super(view);
-                placeView = view;
-                placeTitleView = view.findViewById(R.id.place_title);
+            public PlaceViewHolder(View viewController) {
+                super(viewController);
+                placeView = viewController;
+                placeTitleView = viewController.findViewById(R.id.place_title);
             }
 
             @Override

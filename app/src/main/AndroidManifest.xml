@@ -70,7 +70,7 @@
         </activity>
         <activity
             android:name="es.ulpgc.eite.master.cleanvisitcanary.scenes.intro.IntroActivity"
-            android:label="@string/title_activity_main"
+            android:label="@string/title_intro"
             android:theme="@style/AppTheme.NoActionBar">
             <!--
             <intent-filter>

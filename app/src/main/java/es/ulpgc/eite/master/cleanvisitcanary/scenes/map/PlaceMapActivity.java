@@ -22,12 +22,24 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import es.ulpgc.eite.master.cleanvisitcanary.scenes.common.BaseActivity;
-import es.ulpgc.eite.master.cleanvisitcanary.models.Place;
 import es.ulpgc.eite.master.cleanvisitcanary.R;
+import es.ulpgc.eite.master.cleanvisitcanary.models.Place;
+import es.ulpgc.eite.master.cleanvisitcanary.models.PlaceStore;
+import es.ulpgc.eite.master.cleanvisitcanary.scenes.common.BaseActivity;
 
 public class PlaceMapActivity extends BaseActivity implements OnMapReadyCallback,
-    GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener {
+        GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener {
+
+
+    private PlaceStore placeStore;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        placeStore = getManagedStore().getPlaceStore();
+        setupUI();
+    }
 
 
     private void setupLocationManager(final GoogleMap googleMap) {
@@ -42,7 +54,7 @@ public class PlaceMapActivity extends BaseActivity implements OnMapReadyCallback
         LocationListener locationListener = new LocationListener() {
             public void onLocationChanged(Location location) {
                 // Called when a new location is found by the network location provider.
-                Log.d("MAP", "location=" +  location);
+                Log.d("MAP", "location=" + location);
 
                 //currentLocation = location;
                 googleMap.clear();
@@ -62,9 +74,9 @@ public class PlaceMapActivity extends BaseActivity implements OnMapReadyCallback
 
         // Register the listener with the Location Manager to receive location updates
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-            != PackageManager.PERMISSION_GRANTED
-            && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
-            != PackageManager.PERMISSION_GRANTED) {
+                != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
 
             // ActivityCompat#requestPermissions
             // here to request the missing permissions, and then overriding
@@ -107,7 +119,7 @@ public class PlaceMapActivity extends BaseActivity implements OnMapReadyCallback
 
     }
 
-    private void displayPlaces(GoogleMap googleMap){
+    private void displayPlaces(GoogleMap googleMap) {
 
         // Add all markers and move the camera
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
@@ -131,7 +143,7 @@ public class PlaceMapActivity extends BaseActivity implements OnMapReadyCallback
         }
 
 
-        if(!placeStore.getPlaces().isEmpty()){
+        if (!placeStore.getPlaces().isEmpty()) {
 
             LatLngBounds bounds = builder.build();
             int width = getResources().getDisplayMetrics().widthPixels;
@@ -144,12 +156,12 @@ public class PlaceMapActivity extends BaseActivity implements OnMapReadyCallback
         }
     }
 
-    private void displayLocation(GoogleMap googleMap, Location location){
+    private void displayLocation(GoogleMap googleMap, Location location) {
         if (location == null) {
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
+                    != PackageManager.PERMISSION_GRANTED
+                    && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                    != PackageManager.PERMISSION_GRANTED) {
 
                 return;
             }
@@ -165,8 +177,8 @@ public class PlaceMapActivity extends BaseActivity implements OnMapReadyCallback
         if (location != null) {
             LatLng myLocation = new LatLng(location.getLatitude(), location.getLongitude());
             MarkerOptions myMarker = new MarkerOptions().position(myLocation)
-                .title("Current Location")
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
+                    .title("Current Location")
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
             googleMap.addMarker(myMarker);
             //builder.include(myMarker.getPosition());
         }

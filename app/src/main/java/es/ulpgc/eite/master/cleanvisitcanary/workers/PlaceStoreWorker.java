@@ -10,13 +10,13 @@ import es.ulpgc.eite.master.cleanvisitcanary.models.PlaceStore;
 
 public class PlaceStoreWorker {
 
-    public interface OnPlaceStoreLoaderHandler {
+    public interface PlaceStoreLoaderHandler {
         void onPlaceStoreLoaded(PlaceStore placeStore);
     }
 
-    public void loadStore(Context managedContext, OnPlaceStoreLoaderHandler handler) {
+    public void loadStore(Context managedContext, PlaceStoreLoaderHandler handler) {
         PlaceStore placeStore = new PlaceStore(managedContext);
-        if (handler != null){
+        if (handler != null) {
             handler.onPlaceStoreLoaded(placeStore);
         }
     }
