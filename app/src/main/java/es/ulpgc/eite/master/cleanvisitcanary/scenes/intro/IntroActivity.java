@@ -17,14 +17,14 @@ public class IntroActivity extends BaseActivity
         super.onCreate(savedInstanceState);
 
         //placeStore = getManagedStore().getPlaceStore();
+        setContentView(R.layout.activity_intro);
         setupUI();
     }
 
 
     @Override
     protected void setupUI() {
-        setContentView(R.layout.activity_intro);
-
+        //setContentView(R.layout.activity_intro);
         super.setupUI();
 
         ActionBar actionbar = getSupportActionBar();

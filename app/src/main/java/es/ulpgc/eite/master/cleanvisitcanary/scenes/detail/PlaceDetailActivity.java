@@ -23,12 +23,13 @@ public class PlaceDetailActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         placeStore = getManagedStore().getPlaceStore();
+        setContentView(R.layout.activity_place_detail);
         setupUI();
     }
 
     @Override
     protected void setupUI() {
-        setContentView(R.layout.activity_place_detail);
+        //setContentView(R.layout.activity_place_detail);
 
         String placeId = getIntent().getStringExtra(PARAM_PLACE_ID);
         Place place = placeStore.getPlaceById(placeId);

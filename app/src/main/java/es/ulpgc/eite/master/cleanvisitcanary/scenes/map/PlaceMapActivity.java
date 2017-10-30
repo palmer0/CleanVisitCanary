@@ -38,6 +38,7 @@ public class PlaceMapActivity extends BaseActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
 
         placeStore = getManagedStore().getPlaceStore();
+        setContentView(R.layout.activity_place_map_main);
         setupUI();
     }
 
@@ -94,8 +95,7 @@ public class PlaceMapActivity extends BaseActivity implements OnMapReadyCallback
 
     @Override
     protected void setupUI() {
-        setContentView(R.layout.activity_place_map_main);
-
+        //setContentView(R.layout.activity_place_map_main);
         super.setupUI();
 
         ActionBar actionbar = getSupportActionBar();
