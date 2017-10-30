@@ -10,13 +10,11 @@ import es.ulpgc.eite.master.cleanvisitcanary.scenes.common.BaseActivity;
 public class IntroActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    //private PlaceStore placeStore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //placeStore = getManagedStore().getPlaceStore();
         setContentView(R.layout.activity_intro);
         setupUI();
     }

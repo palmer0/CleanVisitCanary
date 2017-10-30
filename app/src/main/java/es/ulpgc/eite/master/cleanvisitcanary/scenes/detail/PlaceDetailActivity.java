@@ -10,6 +10,7 @@ import es.ulpgc.eite.master.cleanvisitcanary.models.PlaceStore;
 import es.ulpgc.eite.master.cleanvisitcanary.scenes.common.BaseActivity;
 import es.ulpgc.eite.master.cleanvisitcanary.models.Place;
 import es.ulpgc.eite.master.cleanvisitcanary.R;
+import es.ulpgc.eite.master.cleanvisitcanary.scenes.common.MediatorApi;
 
 
 public class PlaceDetailActivity extends BaseActivity {
@@ -22,7 +23,9 @@ public class PlaceDetailActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        placeStore = getManagedStore().getPlaceStore();
+        MediatorApi mediatorApi = (MediatorApi) getApplication();
+        placeStore = mediatorApi.getPlaceStore();
+
         setContentView(R.layout.activity_place_detail);
         setupUI();
     }

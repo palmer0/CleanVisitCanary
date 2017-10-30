@@ -1,6 +1,5 @@
 package es.ulpgc.eite.master.cleanvisitcanary.scenes.common;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -51,15 +50,6 @@ public class BaseActivity extends AppCompatActivity
     }
 
 
-    public Context getManagedContext() {
-        return this;
-    }
-
-    public ManagedStore getManagedStore() {
-        return (ManagedStore) getApplication();
-    }
-
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -96,27 +86,27 @@ public class BaseActivity extends AppCompatActivity
     }
 
 
-    protected void goToPlaceDetails(String placeId) {
+    public void goToPlaceDetails(String placeId) {
         Intent intent = new Intent(BaseActivity.this, PlaceDetailActivity.class);
         intent.putExtra(PlaceDetailActivity.PARAM_PLACE_ID, placeId);
         startActivity(intent);
     }
 
 
-    protected void goToPlaceMap() {
+    public void goToPlaceMap() {
         Intent intent = new Intent(BaseActivity.this, PlaceMapActivity.class);
         startActivity(intent);
         finish();
     }
 
-    protected void goToPlaceList() {
+    public void goToPlaceList() {
         Intent intent = new Intent(BaseActivity.this, PlaceListActivity.class);
         startActivity(intent);
         finish();
     }
 
 
-    protected void goToMain() {
+    public void goToMain() {
         Intent intent = new Intent(BaseActivity.this, IntroActivity.class);
         startActivity(intent);
         finish();

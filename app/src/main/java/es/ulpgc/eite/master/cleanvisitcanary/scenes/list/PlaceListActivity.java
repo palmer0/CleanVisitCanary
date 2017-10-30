@@ -6,15 +6,14 @@ import android.support.v7.widget.RecyclerView;
 
 import es.ulpgc.eite.master.cleanvisitcanary.R;
 import es.ulpgc.eite.master.cleanvisitcanary.scenes.common.BaseActivity;
+import es.ulpgc.eite.master.cleanvisitcanary.scenes.common.MediatorApi;
 import es.ulpgc.eite.master.cleanvisitcanary.scenes.list.contracts.PlaceListInteractorInput;
-import es.ulpgc.eite.master.cleanvisitcanary.scenes.list.contracts.PlaceListInteractorOutput;
 import es.ulpgc.eite.master.cleanvisitcanary.scenes.list.contracts.PlaceListPresenterOutput;
 import es.ulpgc.eite.master.cleanvisitcanary.scenes.list.models.PlaceListOnCreateRequest;
 import es.ulpgc.eite.master.cleanvisitcanary.scenes.list.models.PlaceListOnCreateViewModel;
 
 
-public class PlaceListActivity extends BaseActivity
-        implements PlaceListInteractorOutput, PlaceListPresenterOutput {
+public class PlaceListActivity extends BaseActivity implements PlaceListPresenterOutput {
 
 
     public PlaceListInteractorInput interactor;
@@ -31,6 +30,8 @@ public class PlaceListActivity extends BaseActivity
         PlaceListConfigurator.instance.configure(this);
         //interactor = new PlaceListInteractor(this);
         PlaceListOnCreateRequest request = new PlaceListOnCreateRequest(this);
+        //request.managedContext = this;
+        request.mediatorApi = (MediatorApi) getApplication();
         request.recyclerView = recyclerView;
         interactor.onCreate(request);
     }
@@ -51,8 +52,7 @@ public class PlaceListActivity extends BaseActivity
     }
 
     @Override
-    public void goToPlaceDetails(PlaceListOnCreateViewModel viewModel) {
-        //goToPlaceDetails(viewModel.placeId);
+    public void onItemListClicked(PlaceListOnCreateViewModel viewModel) {
         router.goToPlaceDetails(viewModel.placeId);
     }
 
@@ -92,7 +92,7 @@ public class PlaceListActivity extends BaseActivity
 
                 @Override
                 public void onClick(View viewController) {
-                    goToPlaceDetails(holder.placeItem.id);
+                    onItemListClicked(holder.placeItem.id);
 
                 }
             });

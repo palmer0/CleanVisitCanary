@@ -32,7 +32,8 @@ class PlaceListPresenter implements PlaceListPresenterInput {
     @Override
     public void onCreate(PlaceListOnCreateResponse response) {
         if (viewController != null) {
-            Context managedContext = viewController.getManagedContext();
+            //Context managedContext = viewController.getManagedContext();
+            Context managedContext = response.managedContext;
             String title = managedContext.getString(R.string.title_place_list);
             viewController.setupUI(title);
             setupRecyclerView(response.recyclerView, response.placeStore);
@@ -72,12 +73,6 @@ class PlaceListPresenter implements PlaceListPresenterInput {
                 @Override
                 public void onClick(View view) {
                     onItemListClicked(holder.placeItem.id);
-
-                    /*
-                    if (viewController != null) {
-                        viewController.goToPlaceDetails(holder.placeItem.id);
-                    }
-                    */
                 }
             });
         }
@@ -85,7 +80,7 @@ class PlaceListPresenter implements PlaceListPresenterInput {
         private void onItemListClicked(String placeId){
             if (viewController != null) {
                 PlaceListOnCreateViewModel viewModel = new PlaceListOnCreateViewModel(placeId);
-                viewController.goToPlaceDetails(viewModel);
+                viewController.onItemListClicked(viewModel);
             }
         }
 

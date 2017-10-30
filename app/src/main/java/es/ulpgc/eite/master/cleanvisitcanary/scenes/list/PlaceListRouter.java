@@ -10,7 +10,7 @@ class PlaceListRouter {
 
     public void goToPlaceDetails(String placeId) {
         if(viewController != null){
-            goToPlaceDetails(placeId);
+            viewController.goToPlaceDetails(placeId);
         }
     }
 }

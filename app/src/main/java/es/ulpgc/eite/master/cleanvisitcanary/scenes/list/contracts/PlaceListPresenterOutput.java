@@ -1,7 +1,5 @@
 package es.ulpgc.eite.master.cleanvisitcanary.scenes.list.contracts;
 
-import android.content.Context;
-
 import es.ulpgc.eite.master.cleanvisitcanary.scenes.list.models.PlaceListOnCreateViewModel;
 
 /**
@@ -11,7 +9,6 @@ import es.ulpgc.eite.master.cleanvisitcanary.scenes.list.models.PlaceListOnCreat
 public interface PlaceListPresenterOutput {
 
     void setupUI(String title);
-    //void goToPlaceDetails(String placeId);
-    Context getManagedContext();
-    void goToPlaceDetails(PlaceListOnCreateViewModel viewModel);
+    //Context getManagedContext();
+    void onItemListClicked(PlaceListOnCreateViewModel viewModel);
 }

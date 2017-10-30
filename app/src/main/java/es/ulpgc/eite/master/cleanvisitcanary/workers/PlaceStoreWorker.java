@@ -14,10 +14,10 @@ public class PlaceStoreWorker {
         void onPlaceStoreLoaded(PlaceStore placeStore);
     }
 
-    public void loadStore(Context managedContext, PlaceStoreLoaderHandler handler) {
+    public void loadStore(Context managedContext, PlaceStoreLoaderHandler completionHandler) {
         PlaceStore placeStore = new PlaceStore(managedContext);
-        if (handler != null) {
-            handler.onPlaceStoreLoaded(placeStore);
+        if (completionHandler != null) {
+            completionHandler.onPlaceStoreLoaded(placeStore);
         }
     }
 }

@@ -10,7 +10,7 @@ import io.realm.RealmConfiguration;
  * Created by imac on 29/10/17.
  */
 
-public class DatabaseApplication extends Application implements ManagedStore {
+public class MediatorApplication extends Application implements MediatorApi {
 
 
     private PlaceStore placeStore;
