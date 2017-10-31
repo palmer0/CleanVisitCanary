@@ -169,21 +169,14 @@ public class PlaceMapActivity extends BaseActivity implements OnMapReadyCallback
                 return;
             }
 
-            /*
-            Location lastKnownLocation = locationManager.getLastKnownLocation(locationProvider);
-            if (lastKnownLocation != null) {
-                location = lastKnownLocation;
-            }
-            */
         }
 
         if (location != null) {
-            LatLng myLocation = new LatLng(location.getLatitude(), location.getLongitude());
-            MarkerOptions myMarker = new MarkerOptions().position(myLocation)
+            LatLng currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
+            MarkerOptions myMarker = new MarkerOptions().position(currentLocation)
                     .title("Current Location")
                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
             googleMap.addMarker(myMarker);
-            //builder.include(myMarker.getPosition());
         }
     }
 
