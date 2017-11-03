@@ -10,5 +10,5 @@
     android:layout_marginLeft="@dimen/list_margin"
     android:layout_marginRight="@dimen/list_margin"
     app:layoutManager="LinearLayoutManager"
-    tools:context="es.ulpgc.eite.master.cleanvisitcanary.scenes.list.PlaceListActivity"
+    tools:context="es.ulpgc.eite.master.mapvisitcanary.scenes.list.PlaceListActivity"
     tools:listitem="@layout/place_list_content" />
