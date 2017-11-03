@@ -16,39 +16,57 @@ import es.ulpgc.eite.master.mapvisitcanary.scenes.list.models.PlaceListOnCreateV
 public class PlaceListActivity extends BaseActivity implements PlaceListPresenterOutput {
 
 
-    public PlaceListInteractorInput interactor;
-    public PlaceListRouter router;
+  public PlaceListInteractorInput interactor;
+  public PlaceListRouter router;
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_place_list_main);
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_place_list_main);
 
-        PlaceListConfigurator.instance.configure(this);
+    PlaceListConfigurator.instance.configure(this);
 
-        PlaceListOnCreateRequest request = new PlaceListOnCreateRequest(this);
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.place_list);
-        request.recyclerView = recyclerView;
-        interactor.onCreate(request);
+    PlaceListOnCreateRequest request = new PlaceListOnCreateRequest(this);
+    RecyclerView recyclerView = (RecyclerView) findViewById(R.id.place_list);
+    request.recyclerView = recyclerView;
+    interactor.onCreate(request);
+  }
+
+
+  @Override
+  public void setupUI(PlaceListOnCreateViewModel viewModel) {
+    super.setupUI();
+
+    ActionBar actionbar = getSupportActionBar();
+    if (actionbar != null) {
+      actionbar.setTitle(viewModel.title);
     }
 
+  }
 
-    @Override
-    public void setupUI(PlaceListOnCreateViewModel viewModel) {
-        super.setupUI();
+  @Override
+  public void onItemListClicked(PlaceListOnClickViewModel viewModel) {
+    router.onItemListClicked(viewModel.placeId);
+  }
 
-        ActionBar actionbar = getSupportActionBar();
-        if (actionbar != null) {
-            actionbar.setTitle(viewModel.title);
-        }
+
+  @Override
+  protected void onNavigationItemSelected(int itemId) {
+
+    if (itemId == R.id.nav_map) {
+      // Handle the map action
+      router.onNavigationMapSelected();
+
+    } else if (itemId == R.id.nav_list) {
+      // Handle the list action
+      router.onNavigationListSelected();
+
+    } else if (itemId == R.id.nav_intro) {
+      router.onNavigationIntroSelected();
 
     }
 
-    @Override
-    public void onItemListClicked(PlaceListOnClickViewModel viewModel) {
-        router.goToPlaceDetails(viewModel.placeId);
-    }
-
+  }
 
 }

@@ -13,11 +13,11 @@ import es.ulpgc.eite.master.mapvisitcanary.models.Place;
 
 public class PlaceListOnCreateResponse {
 
-    public RecyclerView recyclerView;
-    public Context managedContext;
-    public List<Place> places;
+  public RecyclerView recyclerView;
+  public Context managedContext;
+  public List<Place> places;
 
-    public PlaceListOnCreateResponse(Context context) {
-        this.managedContext = context;
-    }
+  public PlaceListOnCreateResponse(Context context) {
+    this.managedContext = context;
+  }
 }

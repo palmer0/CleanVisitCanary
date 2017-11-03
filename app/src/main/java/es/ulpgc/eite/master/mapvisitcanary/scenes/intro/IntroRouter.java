@@ -6,6 +6,18 @@ package es.ulpgc.eite.master.mapvisitcanary.scenes.intro;
 
 class IntroRouter {
 
-    public IntroActivity viewController;
+  public IntroActivity viewController;
+
+  public void onNavigationMapSelected() {
+    if (viewController != null) {
+      viewController.goToPlaceMap();
+    }
+  }
+
+  public void onNavigationListSelected() {
+    if (viewController != null) {
+      viewController.goToPlaceList();
+    }
+  }
 
 }

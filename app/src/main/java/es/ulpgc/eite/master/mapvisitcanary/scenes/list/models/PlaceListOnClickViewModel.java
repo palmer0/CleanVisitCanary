@@ -6,9 +6,9 @@ package es.ulpgc.eite.master.mapvisitcanary.scenes.list.models;
 
 public class PlaceListOnClickViewModel {
 
-    public final String placeId;
+  public final String placeId;
 
-    public PlaceListOnClickViewModel(String placeId) {
-        this.placeId = placeId;
-    }
+  public PlaceListOnClickViewModel(String placeId) {
+    this.placeId = placeId;
+  }
 }

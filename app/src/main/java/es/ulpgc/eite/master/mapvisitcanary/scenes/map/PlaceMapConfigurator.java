@@ -7,17 +7,17 @@ package es.ulpgc.eite.master.mapvisitcanary.scenes.map;
 
 public class PlaceMapConfigurator {
 
-    static PlaceMapConfigurator instance = new PlaceMapConfigurator();
+  static PlaceMapConfigurator instance = new PlaceMapConfigurator();
 
-    public void configure(PlaceMapActivity viewController){
-        PlaceMapInteractor interactor = new PlaceMapInteractor();
-        PlaceMapPresenter presenter = new PlaceMapPresenter();
-        PlaceMapRouter router = new PlaceMapRouter();
-        viewController.interactor = interactor;
-        interactor.presenter = presenter;
-        presenter.viewController = viewController;
-        router.viewController = viewController;
-        viewController.router = router;
-    }
-    
+  public void configure(PlaceMapActivity viewController) {
+    PlaceMapInteractor interactor = new PlaceMapInteractor();
+    PlaceMapPresenter presenter = new PlaceMapPresenter();
+    PlaceMapRouter router = new PlaceMapRouter();
+    viewController.interactor = interactor;
+    interactor.presenter = presenter;
+    presenter.viewController = viewController;
+    router.viewController = viewController;
+    viewController.router = router;
+  }
+
 }

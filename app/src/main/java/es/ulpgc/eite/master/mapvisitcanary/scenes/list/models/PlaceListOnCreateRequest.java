@@ -9,12 +9,12 @@ import android.support.v7.widget.RecyclerView;
 
 public class PlaceListOnCreateRequest {
 
-    public RecyclerView recyclerView;
-    public Context managedContext;
+  public RecyclerView recyclerView;
+  public Context managedContext;
 
-    public PlaceListOnCreateRequest(Context context) {
-        this.managedContext = context;
-    }
+  public PlaceListOnCreateRequest(Context context) {
+    this.managedContext = context;
+  }
 
 
 }

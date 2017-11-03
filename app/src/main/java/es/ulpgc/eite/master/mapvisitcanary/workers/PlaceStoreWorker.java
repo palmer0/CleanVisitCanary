@@ -10,14 +10,14 @@ import es.ulpgc.eite.master.mapvisitcanary.models.PlaceStore;
 
 public class PlaceStoreWorker {
 
-    public interface PlaceStoreLoaderHandler {
-        void onPlaceStoreLoaded(PlaceStore placeStore);
-    }
+  public interface PlaceStoreLoaderHandler {
+    void onPlaceStoreLoaded(PlaceStore placeStore);
+  }
 
-    public void loadStore(Context managedContext, PlaceStoreLoaderHandler completionHandler) {
-        PlaceStore placeStore = new PlaceStore(managedContext);
-        if (completionHandler != null) {
-            completionHandler.onPlaceStoreLoaded(placeStore);
-        }
+  public void loadStore(Context managedContext, PlaceStoreLoaderHandler completionHandler) {
+    PlaceStore placeStore = new PlaceStore(managedContext);
+    if (completionHandler != null) {
+      completionHandler.onPlaceStoreLoaded(placeStore);
     }
+  }
 }

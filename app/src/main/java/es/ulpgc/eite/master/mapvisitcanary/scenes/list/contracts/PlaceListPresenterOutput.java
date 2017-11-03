@@ -9,6 +9,7 @@ import es.ulpgc.eite.master.mapvisitcanary.scenes.list.models.PlaceListOnCreateV
 
 public interface PlaceListPresenterOutput {
 
-    void setupUI(PlaceListOnCreateViewModel title);
-    void onItemListClicked(PlaceListOnClickViewModel viewModel);
+  void setupUI(PlaceListOnCreateViewModel title);
+
+  void onItemListClicked(PlaceListOnClickViewModel viewModel);
 }

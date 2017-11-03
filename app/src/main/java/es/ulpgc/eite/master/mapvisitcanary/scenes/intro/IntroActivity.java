@@ -12,33 +12,46 @@ import es.ulpgc.eite.master.mapvisitcanary.scenes.intro.models.IntroOnCreateRequ
 import es.ulpgc.eite.master.mapvisitcanary.scenes.intro.models.IntroOnCreateViewModel;
 
 public class IntroActivity extends BaseActivity
-        implements IntroPresenterOutput, NavigationView.OnNavigationItemSelectedListener {
+    implements IntroPresenterOutput, NavigationView.OnNavigationItemSelectedListener {
 
 
-    public IntroInteractorInput interactor;
-    public IntroRouter router;
+  public IntroInteractorInput interactor;
+  public IntroRouter router;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_intro);
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_intro);
 
-        IntroConfigurator.instance.configure(this);
+    IntroConfigurator.instance.configure(this);
 
-        IntroOnCreateRequest request = new IntroOnCreateRequest(this);
-        interactor.onCreate(request);
+    IntroOnCreateRequest request = new IntroOnCreateRequest(this);
+    interactor.onCreate(request);
+  }
+
+
+  @Override
+  public void setupUI(IntroOnCreateViewModel viewModel) {
+    super.setupUI();
+
+    ActionBar actionbar = getSupportActionBar();
+    if (actionbar != null) {
+      actionbar.setTitle(viewModel.title);
     }
 
+  }
 
-    @Override
-    public void setupUI(IntroOnCreateViewModel viewModel) {
-        super.setupUI();
+  @Override
+  protected void onNavigationItemSelected(int itemId) {
 
-        ActionBar actionbar = getSupportActionBar();
-        if (actionbar != null) {
-            actionbar.setTitle(viewModel.title);
-        }
+    if (itemId == R.id.nav_map) {
+      // Handle the map action
+      router.onNavigationMapSelected();
+
+    } else if (itemId == R.id.nav_list) {
+      // Handle the list action
+      router.onNavigationListSelected();
 
     }
-
+  }
 }

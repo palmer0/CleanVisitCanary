@@ -12,7 +12,7 @@ import es.ulpgc.eite.master.mapvisitcanary.scenes.detail.models.PlaceDetailOnCre
  * Created by Luis on 2/11/17.
  */
 
-class PlaceDetailPresenter implements PlaceDetailPresenterInput{
+class PlaceDetailPresenter implements PlaceDetailPresenterInput {
 
   public PlaceDetailPresenterOutput viewController;
 

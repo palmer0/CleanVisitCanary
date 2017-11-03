@@ -13,8 +13,12 @@ import es.ulpgc.eite.master.mapvisitcanary.scenes.map.models.PlaceMapOnReadyView
 public interface PlaceMapPresenterOutput {
 
   void setupUI(PlaceMapOnCreateViewModel viewModel);
+
   void displayPlaces(PlaceMapOnReadyViewModel viewModel);
+
   void displayLocation(PlaceMapOnLocChangedViewModel viewModel);
+
   void setupLocationManager(PlaceMapLocManagerViewModel viewModel);
-  void goToPlaceDetails(PlaceMapOnClickViewModel viewModel);
+
+  void onMapMarkerClicked(PlaceMapOnClickViewModel viewModel);
 }

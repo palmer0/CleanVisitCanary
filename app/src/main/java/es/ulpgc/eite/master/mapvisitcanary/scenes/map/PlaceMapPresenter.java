@@ -73,7 +73,7 @@ class PlaceMapPresenter implements PlaceMapPresenterInput,
   @Override
   public boolean onMarkerClick(Marker marker) {
     String placeId = marker.getSnippet();
-    goToPlaceDetails(placeId);
+    onMapMarkerClicked(placeId);
 
     return true;
   }
@@ -81,13 +81,13 @@ class PlaceMapPresenter implements PlaceMapPresenterInput,
   @Override
   public void onInfoWindowClick(Marker marker) {
     String placeId = marker.getSnippet();
-    goToPlaceDetails(placeId);
+    onMapMarkerClicked(placeId);
   }
 
-  private void goToPlaceDetails(String placeId){
+  private void onMapMarkerClicked(String placeId) {
     PlaceMapOnClickViewModel viewModel = new PlaceMapOnClickViewModel();
     viewModel.placeId = placeId;
-    viewController.goToPlaceDetails(viewModel);
+    viewController.onMapMarkerClicked(viewModel);
   }
 
 

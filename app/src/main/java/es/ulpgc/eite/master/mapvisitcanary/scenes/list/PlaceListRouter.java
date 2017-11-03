@@ -6,11 +6,30 @@ package es.ulpgc.eite.master.mapvisitcanary.scenes.list;
 
 class PlaceListRouter {
 
-    public PlaceListActivity viewController;
+  public PlaceListActivity viewController;
 
-    public void goToPlaceDetails(String placeId) {
-        if(viewController != null){
-            viewController.goToPlaceDetails(placeId);
-        }
+  public void onItemListClicked(String placeId) {
+    if (viewController != null) {
+      viewController.goToPlaceDetails(placeId);
     }
+  }
+
+  public void onNavigationMapSelected() {
+    if (viewController != null) {
+      viewController.goToPlaceMap();
+    }
+  }
+
+  public void onNavigationListSelected() {
+    if (viewController != null) {
+      viewController.goToPlaceList();
+    }
+  }
+
+  public void onNavigationIntroSelected() {
+    if (viewController != null) {
+      viewController.goToIntro();
+    }
+  }
+
 }

@@ -19,87 +19,77 @@ import es.ulpgc.eite.master.mapvisitcanary.scenes.map.PlaceMapActivity;
  * Created by Luis on 23/10/17.
  */
 
-public class BaseActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public abstract class BaseActivity extends AppCompatActivity
+    implements NavigationView.OnNavigationItemSelectedListener {
 
-    public static final String PARAM_PLACE_ID = "place_to_visit_id";
+  public static final String PARAM_PLACE_ID = "place_to_visit_id";
+
+  protected abstract void onNavigationItemSelected(int itemId);
 
 
-    protected void setupUI() {
+  protected void setupUI() {
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+    Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+    setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
-                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
+    DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+    ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
+        R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+    drawer.setDrawerListener(toggle);
+    toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+    NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+    navigationView.setNavigationItemSelectedListener(this);
+  }
+
+
+  @Override
+  public void onBackPressed() {
+    DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+    if (drawer != null && drawer.isDrawerOpen(GravityCompat.START)) {
+      drawer.closeDrawer(GravityCompat.START);
+    } else {
+      super.onBackPressed();
     }
+  }
 
 
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer != null && drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
+  @SuppressWarnings("StatementWithEmptyBody")
+  @Override
+  public boolean onNavigationItemSelected(MenuItem item) {
+    // Handle navigation viewController item clicks here.
+    int itemId = item.getItemId();
+    onNavigationItemSelected(itemId);
+
+    DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+    drawer.closeDrawer(GravityCompat.START);
+    return true;
+  }
 
 
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation viewController item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_map) {
-            // Handle the map action
-            goToPlaceMap();
-
-        } else if (id == R.id.nav_list) {
-            // Handle the list action
-            goToPlaceList();
-
-        } else if (id == R.id.nav_intro) {
-            goToMain();
-
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
+  public void goToPlaceDetails(String placeId) {
+    Intent intent = new Intent(BaseActivity.this, PlaceDetailActivity.class);
+    intent.putExtra(PlaceDetailActivity.PARAM_PLACE_ID, placeId);
+    startActivity(intent);
+  }
 
 
-    public void goToPlaceDetails(String placeId) {
-        Intent intent = new Intent(BaseActivity.this, PlaceDetailActivity.class);
-        intent.putExtra(PlaceDetailActivity.PARAM_PLACE_ID, placeId);
-        startActivity(intent);
-    }
+  public void goToPlaceMap() {
+    Intent intent = new Intent(BaseActivity.this, PlaceMapActivity.class);
+    startActivity(intent);
+    finish();
+  }
+
+  public void goToPlaceList() {
+    Intent intent = new Intent(BaseActivity.this, PlaceListActivity.class);
+    startActivity(intent);
+    finish();
+  }
 
 
-    public void goToPlaceMap() {
-        Intent intent = new Intent(BaseActivity.this, PlaceMapActivity.class);
-        startActivity(intent);
-        finish();
-    }
-
-    public void goToPlaceList() {
-        Intent intent = new Intent(BaseActivity.this, PlaceListActivity.class);
-        startActivity(intent);
-        finish();
-    }
-
-
-    public void goToMain() {
-        Intent intent = new Intent(BaseActivity.this, IntroActivity.class);
-        startActivity(intent);
-        finish();
-    }
+  public void goToIntro() {
+    Intent intent = new Intent(BaseActivity.this, IntroActivity.class);
+    startActivity(intent);
+    finish();
+  }
 }

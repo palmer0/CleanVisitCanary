@@ -14,48 +14,51 @@ import es.ulpgc.eite.master.mapvisitcanary.scenes.detail.models.PlaceDetailOnCre
 
 
 public class PlaceDetailActivity
-    extends BaseActivity  implements PlaceDetailPresenterOutput {
+    extends BaseActivity implements PlaceDetailPresenterOutput {
 
-    //public static final String PARAM_PLACE_ID = "place_to_visit_id";
 
-    public PlaceDetailInteractor interactor;
-    public PlaceDetailRouter router;
+  public PlaceDetailInteractor interactor;
+  public PlaceDetailRouter router;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_place_detail);
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_place_detail);
 
-        PlaceDetailConfigurator.instance.configure(this);
+    PlaceDetailConfigurator.instance.configure(this);
 
-        PlaceDetailOnCreateRequest request = new PlaceDetailOnCreateRequest(this);
-        request.managedIntent = getIntent();
-        interactor.onCreate(request);
+    PlaceDetailOnCreateRequest request = new PlaceDetailOnCreateRequest(this);
+    request.managedIntent = getIntent();
+    interactor.onCreate(request);
+  }
+
+
+  public void setupUI(PlaceDetailOnCreateViewModel viewModel) {
+    setupToolbar(viewModel.title);
+
+    TextView placeDetails = (TextView) findViewById(R.id.place_detail);
+    placeDetails.setText(viewModel.description);
+    ImageView placePicture = (ImageView) findViewById(R.id.place_picture);
+
+    placePicture.setImageResource(viewModel.picResId);
+  }
+
+
+  private void setupToolbar(String title) {
+    Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+    setSupportActionBar(toolbar);
+
+    ActionBar actionbar = getSupportActionBar();
+    if (actionbar != null) {
+      //actionbar.setHomeButtonEnabled(true);
+      actionbar.setDisplayHomeAsUpEnabled(true);
+      actionbar.setTitle(title);
     }
+  }
 
+  @Override
+  protected void onNavigationItemSelected(int itemId) {
 
-    public void setupUI(PlaceDetailOnCreateViewModel viewModel) {
-        setupToolbar(viewModel.title);
-
-        TextView placeDetails = (TextView) findViewById(R.id.place_detail);
-        placeDetails.setText(viewModel.description);
-        ImageView placePicture = (ImageView) findViewById(R.id.place_picture);
-
-        placePicture.setImageResource(viewModel.picResId);
-    }
-
-
-    private void setupToolbar(String title) {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        ActionBar actionbar = getSupportActionBar();
-        if (actionbar != null) {
-            //actionbar.setHomeButtonEnabled(true);
-            actionbar.setDisplayHomeAsUpEnabled(true);
-            actionbar.setTitle(title);
-        }
-    }
-
+  }
 
 }

@@ -12,24 +12,24 @@ import io.realm.RealmConfiguration;
 public class DatabaseApplication extends Application { //implements MediatorApi {
 
 
-    //private PlaceStore placeStore;
+  //private PlaceStore placeStore;
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
+  @Override
+  public void onCreate() {
+    super.onCreate();
 
-        setupDatabase();
-    }
+    setupDatabase();
+  }
 
 
-    private void setupDatabase() {
-        Realm.init(this);
-        RealmConfiguration realmConfig = new RealmConfiguration.Builder()
-                .name("visitcanary.realm")
-                .schemaVersion(1)
-                .build();
-        Realm.setDefaultConfiguration(realmConfig);
-    }
+  private void setupDatabase() {
+    Realm.init(this);
+    RealmConfiguration realmConfig = new RealmConfiguration.Builder()
+        .name("visitcanary.realm")
+        .schemaVersion(1)
+        .build();
+    Realm.setDefaultConfiguration(realmConfig);
+  }
 
     /*
     @Override

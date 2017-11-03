@@ -6,6 +6,6 @@ package es.ulpgc.eite.master.mapvisitcanary.scenes.detail;
 
 class PlaceDetailRouter {
 
-    public PlaceDetailActivity viewController;
+  public PlaceDetailActivity viewController;
 
 }
