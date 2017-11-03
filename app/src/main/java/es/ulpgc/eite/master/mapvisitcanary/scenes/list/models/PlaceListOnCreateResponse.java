@@ -14,7 +14,6 @@ import es.ulpgc.eite.master.mapvisitcanary.models.Place;
 public class PlaceListOnCreateResponse {
 
     public RecyclerView recyclerView;
-    //public PlaceStore placeStore;
     public Context managedContext;
     public List<Place> places;
 

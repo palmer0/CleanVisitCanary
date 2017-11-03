@@ -8,5 +8,4 @@ class PlaceDetailRouter {
 
     public PlaceDetailActivity viewController;
 
-
 }

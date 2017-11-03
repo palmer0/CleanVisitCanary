@@ -25,22 +25,13 @@ class PlaceListPresenter implements PlaceListPresenterInput {
 
     public PlaceListPresenterOutput viewController;
 
-    /*
-    public PlaceListPresenter(PlaceListPresenterOutput viewController) {
-        this.viewController = viewController;
-    }
-    */
-
     @Override
     public void onCreate(PlaceListOnCreateResponse response) {
         if (viewController != null) {
             Context context = response.managedContext;
-            //String title = context.getString(R.string.title_place_list);
-            //viewController.setupUI(title);
             PlaceListOnCreateViewModel viewModel = new PlaceListOnCreateViewModel();
             viewModel.title = context.getString(R.string.title_place_list);
             viewController.setupUI(viewModel);
-            //setupRecyclerView(response.recyclerView, response.placeStore);
             setupRecyclerView(response.recyclerView, response.places);
         }
     }
@@ -51,13 +42,6 @@ class PlaceListPresenter implements PlaceListPresenterInput {
         }
     }
 
-    /*
-    private void setupRecyclerView(RecyclerView recyclerView, PlaceStore placeStore) {
-        if (recyclerView != null) {
-            recyclerView.setAdapter(new PlaceRecyclerViewAdapter(placeStore.getPlaces()));
-        }
-    }
-    */
 
     private class PlaceRecyclerViewAdapter
             extends RecyclerView.Adapter<PlaceRecyclerViewAdapter.PlaceViewHolder> {
@@ -118,7 +102,6 @@ class PlaceListPresenter implements PlaceListPresenterInput {
             }
         }
     }
-
 
 
 }

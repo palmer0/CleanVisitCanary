@@ -1,5 +1,7 @@
 package es.ulpgc.eite.master.mapvisitcanary.scenes.detail.models;
 
+import android.content.Context;
+
 import es.ulpgc.eite.master.mapvisitcanary.models.Place;
 
 /**
@@ -7,6 +9,8 @@ import es.ulpgc.eite.master.mapvisitcanary.models.Place;
  */
 
 public class PlaceDetailOnCreateResponse {
+
   public Place place;
+  public Context managedContext;
 
 }

@@ -10,8 +10,8 @@ public class PlaceDetailConfigurator {
     static PlaceDetailConfigurator instance = new PlaceDetailConfigurator();
 
     public void configure(PlaceDetailActivity viewController){
-        PlaceDetailInteractor interactor = new PlaceDetailInteractor(viewController);
-        PlaceDetailPresenter presenter = new PlaceDetailPresenter(viewController);
+        PlaceDetailInteractor interactor = new PlaceDetailInteractor();
+        PlaceDetailPresenter presenter = new PlaceDetailPresenter();
         PlaceDetailRouter router = new PlaceDetailRouter();
         viewController.interactor = interactor;
         interactor.presenter = presenter;

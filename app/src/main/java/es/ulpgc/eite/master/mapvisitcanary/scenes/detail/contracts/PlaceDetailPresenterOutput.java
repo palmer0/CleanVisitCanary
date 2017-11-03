@@ -7,6 +7,5 @@ import es.ulpgc.eite.master.mapvisitcanary.scenes.detail.models.PlaceDetailOnCre
  */
 
 public interface PlaceDetailPresenterOutput {
-  //void setupUI(String title, String description, int resId);
   void setupUI(PlaceDetailOnCreateViewModel viewModel);
 }

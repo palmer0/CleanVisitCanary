@@ -9,13 +9,13 @@ import com.google.android.gms.maps.GoogleMap;
  * Created by Luis on 3/11/17.
  */
 
-public class PlaceMapOnLocationRequest {
+public class PlaceMapOnLocChangedRequest {
 
   public final Context managedContext;
   public GoogleMap googleMap;
   public Location location;
 
-  public PlaceMapOnLocationRequest(Context context) {
+  public PlaceMapOnLocChangedRequest(Context context) {
     managedContext = context;
   }
 

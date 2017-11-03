@@ -2,7 +2,6 @@ package es.ulpgc.eite.master.mapvisitcanary.scenes.common;
 
 import android.app.Application;
 
-import es.ulpgc.eite.master.mapvisitcanary.models.PlaceStore;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
@@ -10,10 +9,10 @@ import io.realm.RealmConfiguration;
  * Created by imac on 29/10/17.
  */
 
-public class MediatorApplication extends Application implements MediatorApi {
+public class DatabaseApplication extends Application { //implements MediatorApi {
 
 
-    private PlaceStore placeStore;
+    //private PlaceStore placeStore;
 
     @Override
     public void onCreate() {
@@ -32,6 +31,7 @@ public class MediatorApplication extends Application implements MediatorApi {
         Realm.setDefaultConfiguration(realmConfig);
     }
 
+    /*
     @Override
     public void setPlaceStore(PlaceStore placeStore) {
         this.placeStore = placeStore;
@@ -42,4 +42,5 @@ public class MediatorApplication extends Application implements MediatorApi {
     public PlaceStore getPlaceStore() {
         return placeStore;
     }
+    */
 }

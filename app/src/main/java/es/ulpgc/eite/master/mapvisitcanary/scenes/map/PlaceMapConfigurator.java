@@ -10,8 +10,6 @@ public class PlaceMapConfigurator {
     static PlaceMapConfigurator instance = new PlaceMapConfigurator();
 
     public void configure(PlaceMapActivity viewController){
-        //PlaceMapInteractor interactor = new PlaceMapInteractor(viewController);
-        //PlaceMapPresenter presenter = new PlaceMapPresenter(viewController);
         PlaceMapInteractor interactor = new PlaceMapInteractor();
         PlaceMapPresenter presenter = new PlaceMapPresenter();
         PlaceMapRouter router = new PlaceMapRouter();

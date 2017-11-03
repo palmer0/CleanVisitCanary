@@ -14,26 +14,20 @@ import es.ulpgc.eite.master.mapvisitcanary.scenes.detail.models.PlaceDetailOnCre
 
 class PlaceDetailPresenter implements PlaceDetailPresenterInput{
 
-  private final Context managedContext;
   public PlaceDetailPresenterOutput viewController;
-
-  public PlaceDetailPresenter(PlaceDetailActivity viewController) {
-    this.viewController = viewController;
-    managedContext = viewController;
-  }
 
   @Override
   public void onCreate(PlaceDetailOnCreateResponse response) {
-    PlaceDetailOnCreateViewModel viewModel = new PlaceDetailOnCreateViewModel();
-
+    Context context = response.managedContext;
     Place place = response.place;
-    int resId = managedContext.getResources().getIdentifier(
-        place.picture, "drawable", managedContext.getPackageName());
 
-    //viewController.setupUI(place.title, place.description, resId);
+    int picResId = context.getResources().getIdentifier(
+        place.picture, "drawable", context.getPackageName());
+
+    PlaceDetailOnCreateViewModel viewModel = new PlaceDetailOnCreateViewModel();
     viewModel.description = place.description;
     viewModel.title = place.title;
-    viewModel.picResId = resId;
+    viewModel.picResId = picResId;
     viewController.setupUI(viewModel);
   }
 }

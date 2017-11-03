@@ -24,17 +24,6 @@ public class BaseActivity extends AppCompatActivity
 
     public static final String PARAM_PLACE_ID = "place_to_visit_id";
 
-    //protected PlaceStore placeStore;
-
-    /*
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        placeStore = new PlaceStore(this);
-        setupUI();
-    }
-    */
-
 
     protected void setupUI() {
 

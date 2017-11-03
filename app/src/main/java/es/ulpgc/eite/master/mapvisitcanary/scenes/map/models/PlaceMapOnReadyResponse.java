@@ -17,7 +17,5 @@ public class PlaceMapOnReadyResponse {
   public GoogleMap googleMap;
   public List<Place> places;
   public Context managedContext;
-  //public GoogleMap.OnMarkerClickListener markerClickListener;
-  //public GoogleMap.OnInfoWindowClickListener infoWindowClickListener;
 
 }
