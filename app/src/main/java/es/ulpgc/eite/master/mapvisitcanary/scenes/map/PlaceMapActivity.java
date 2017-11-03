@@ -198,10 +198,10 @@ public class PlaceMapActivity extends BaseActivity
 
     if (location != null) {
       LatLng currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
-      MarkerOptions myMarker = new MarkerOptions().position(currentLocation)
+      MarkerOptions marker = new MarkerOptions().position(currentLocation)
           .title("Current Location")
           .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
-      googleMap.addMarker(myMarker);
+      googleMap.addMarker(marker);
     }
   }
 
