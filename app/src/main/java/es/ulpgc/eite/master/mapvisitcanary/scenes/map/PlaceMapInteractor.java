@@ -2,28 +2,25 @@ package es.ulpgc.eite.master.mapvisitcanary.scenes.map;
 
 import android.content.Context;
 
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.model.Marker;
-
 import es.ulpgc.eite.master.mapvisitcanary.R;
 import es.ulpgc.eite.master.mapvisitcanary.models.PlaceStore;
 import es.ulpgc.eite.master.mapvisitcanary.scenes.common.MediatorApi;
-import es.ulpgc.eite.master.mapvisitcanary.scenes.map.models.PlaceMapOnReadyRequest;
-import es.ulpgc.eite.master.mapvisitcanary.scenes.map.models.PlaceMapOnReadyResponse;
 import es.ulpgc.eite.master.mapvisitcanary.scenes.map.contracts.PlaceMapInteractorInput;
 import es.ulpgc.eite.master.mapvisitcanary.scenes.map.contracts.PlaceMapPresenterInput;
 import es.ulpgc.eite.master.mapvisitcanary.scenes.map.models.PlaceMapOnCreateRequest;
 import es.ulpgc.eite.master.mapvisitcanary.scenes.map.models.PlaceMapOnCreateResponse;
 import es.ulpgc.eite.master.mapvisitcanary.scenes.map.models.PlaceMapOnLocationRequest;
 import es.ulpgc.eite.master.mapvisitcanary.scenes.map.models.PlaceMapOnLocationResponse;
+import es.ulpgc.eite.master.mapvisitcanary.scenes.map.models.PlaceMapOnReadyRequest;
+import es.ulpgc.eite.master.mapvisitcanary.scenes.map.models.PlaceMapOnReadyResponse;
 import es.ulpgc.eite.master.mapvisitcanary.workers.PlaceStoreWorker;
 
 /**
  * Created by Luis on 2/11/17.
  */
 
-class PlaceMapInteractor implements PlaceMapInteractorInput,
-    GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener {
+class PlaceMapInteractor implements PlaceMapInteractorInput {
+    //implements PlaceMapInteractorInput, GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener {
 
   //private final Context managedContext;
   public PlaceMapPresenterInput presenter;
@@ -61,8 +58,8 @@ class PlaceMapInteractor implements PlaceMapInteractorInput,
   public void onMapReady(PlaceMapOnReadyRequest request) {
 
     PlaceMapOnReadyResponse response = new PlaceMapOnReadyResponse();
-    response.markerClickListener = this;
-    response.infoWindowClickListener = this;
+    //response.markerClickListener = this;
+    //response.infoWindowClickListener = this;
     response.googleMap = request.googleMap;
     response.managedContext = request.managedContext;
     response.places = placeStore.getPlaces();
@@ -90,6 +87,7 @@ class PlaceMapInteractor implements PlaceMapInteractorInput,
   }
   */
 
+  /*
   @Override
   public boolean onMarkerClick(Marker marker) {
     String placeId = marker.getSnippet();
@@ -108,6 +106,7 @@ class PlaceMapInteractor implements PlaceMapInteractorInput,
   private void goToPlaceDetails(String placeId){
 
   }
+  */
 
   private void setPlaceStore(PlaceStore placeStore) {
     this.placeStore = placeStore;

@@ -1,6 +1,7 @@
 package es.ulpgc.eite.master.mapvisitcanary.scenes.map;
 
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.Marker;
 
 import java.util.List;
 
@@ -8,6 +9,7 @@ import es.ulpgc.eite.master.mapvisitcanary.models.Place;
 import es.ulpgc.eite.master.mapvisitcanary.scenes.map.contracts.PlaceMapPresenterInput;
 import es.ulpgc.eite.master.mapvisitcanary.scenes.map.contracts.PlaceMapPresenterOutput;
 import es.ulpgc.eite.master.mapvisitcanary.scenes.map.models.PlaceMapLocManagerViewModel;
+import es.ulpgc.eite.master.mapvisitcanary.scenes.map.models.PlaceMapOnClickViewModel;
 import es.ulpgc.eite.master.mapvisitcanary.scenes.map.models.PlaceMapOnCreateResponse;
 import es.ulpgc.eite.master.mapvisitcanary.scenes.map.models.PlaceMapOnCreateViewModel;
 import es.ulpgc.eite.master.mapvisitcanary.scenes.map.models.PlaceMapOnLocationResponse;
@@ -19,7 +21,8 @@ import es.ulpgc.eite.master.mapvisitcanary.scenes.map.models.PlaceMapOnReadyView
  * Created by Luis on 2/11/17.
  */
 
-class PlaceMapPresenter implements PlaceMapPresenterInput {
+class PlaceMapPresenter implements PlaceMapPresenterInput,
+    GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener {
 
   public PlaceMapPresenterOutput viewController;
 
@@ -42,8 +45,10 @@ class PlaceMapPresenter implements PlaceMapPresenterInput {
   public void onMapReady(PlaceMapOnReadyResponse response) {
     GoogleMap googleMap = response.googleMap;
 
-    googleMap.setOnMarkerClickListener(response.markerClickListener);
-    googleMap.setOnInfoWindowClickListener(response.infoWindowClickListener);
+    //googleMap.setOnMarkerClickListener(response.markerClickListener);
+    //googleMap.setOnInfoWindowClickListener(response.infoWindowClickListener);
+    googleMap.setOnInfoWindowClickListener(this);
+    //googleMap.setOnMarkerClickListener(this);
 
     //displayPlaces(googleMap);
     displayPlaces(response.googleMap, response.places);
@@ -64,26 +69,50 @@ class PlaceMapPresenter implements PlaceMapPresenterInput {
     viewController.setupLocationManager(viewModel);
   }
 
-  @Override
-  public void onLocationChanged(PlaceMapOnLocationResponse response) {
-    GoogleMap googleMap = response.googleMap;
-
-    googleMap.clear();
-    //displayLocation(googleMap, location);
-    //displayPlaces(response.googleMap, response.managedContext, response.places);
-    displayPlaces(response.googleMap, response.places);
-
-    PlaceMapOnLocationViewModel viewModel = new PlaceMapOnLocationViewModel();
-    viewModel.googleMap = response.googleMap;
-    viewModel.location = response.location;
-    viewController.displayLocation(viewModel);
-  }
-
   private void displayPlaces(GoogleMap googleMap, List<Place> places) {
     PlaceMapOnReadyViewModel viewModel = new PlaceMapOnReadyViewModel();
     viewModel.googleMap = googleMap;
     viewModel.places = places;
     viewController.displayPlaces(viewModel);
+  }
+
+  @Override
+  public void onLocationChanged(PlaceMapOnLocationResponse response) {
+    GoogleMap googleMap = response.googleMap;
+
+    /*
+    googleMap.clear();
+    //displayLocation(googleMap, location);
+    //displayPlaces(response.googleMap, response.managedContext, response.places);
+    displayPlaces(response.googleMap, response.places);
+    */
+
+    PlaceMapOnLocationViewModel viewModel = new PlaceMapOnLocationViewModel();
+    //viewModel.googleMap = response.googleMap;
+    viewModel.googleMap = googleMap;
+    viewModel.location = response.location;
+    viewController.displayLocation(viewModel);
+  }
+
+
+  @Override
+  public boolean onMarkerClick(Marker marker) {
+    String placeId = marker.getSnippet();
+    goToPlaceDetails(placeId);
+
+    return true;
+  }
+
+  @Override
+  public void onInfoWindowClick(Marker marker) {
+    String placeId = marker.getSnippet();
+    goToPlaceDetails(placeId);
+  }
+
+  private void goToPlaceDetails(String placeId){
+    PlaceMapOnClickViewModel viewModel = new PlaceMapOnClickViewModel();
+    viewModel.placeId = placeId;
+    viewController.goToPlaceDetails(viewModel);
   }
 
 

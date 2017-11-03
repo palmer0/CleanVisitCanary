@@ -30,6 +30,7 @@ import es.ulpgc.eite.master.mapvisitcanary.scenes.common.MediatorApi;
 import es.ulpgc.eite.master.mapvisitcanary.scenes.map.contracts.PlaceMapInteractorInput;
 import es.ulpgc.eite.master.mapvisitcanary.scenes.map.contracts.PlaceMapPresenterOutput;
 import es.ulpgc.eite.master.mapvisitcanary.scenes.map.models.PlaceMapLocManagerViewModel;
+import es.ulpgc.eite.master.mapvisitcanary.scenes.map.models.PlaceMapOnClickViewModel;
 import es.ulpgc.eite.master.mapvisitcanary.scenes.map.models.PlaceMapOnCreateRequest;
 import es.ulpgc.eite.master.mapvisitcanary.scenes.map.models.PlaceMapOnCreateViewModel;
 import es.ulpgc.eite.master.mapvisitcanary.scenes.map.models.PlaceMapOnLocationRequest;
@@ -162,6 +163,11 @@ public class PlaceMapActivity extends BaseActivity
         locationManager.requestLocationUpdates(
             locationProvider, 0, 0, locationListener);
 
+    }
+
+    @Override
+    public void goToPlaceDetails(PlaceMapOnClickViewModel viewModel) {
+        router.goToPlaceDetails(viewModel.placeId);
     }
 
 
