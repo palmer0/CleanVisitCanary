@@ -15,10 +15,8 @@ import es.ulpgc.eite.master.mapvisitcanary.scenes.list.models.PlaceListOnCreateV
 
 public class PlaceListActivity extends BaseActivity implements PlaceListPresenterOutput {
 
-
   public PlaceListInteractorInput interactor;
   public PlaceListRouter router;
-
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +31,6 @@ public class PlaceListActivity extends BaseActivity implements PlaceListPresente
     interactor.onCreate(request);
   }
 
-
   @Override
   public void setupUI(PlaceListOnCreateViewModel viewModel) {
     super.setupUI();
@@ -42,7 +39,6 @@ public class PlaceListActivity extends BaseActivity implements PlaceListPresente
     if (actionbar != null) {
       actionbar.setTitle(viewModel.title);
     }
-
   }
 
   @Override
@@ -50,23 +46,18 @@ public class PlaceListActivity extends BaseActivity implements PlaceListPresente
     router.onItemListClicked(viewModel.placeId);
   }
 
-
   @Override
   protected void onNavigationItemSelected(int itemId) {
 
     if (itemId == R.id.nav_map) {
       // Handle the map action
       router.onNavigationMapSelected();
-
     } else if (itemId == R.id.nav_list) {
       // Handle the list action
       router.onNavigationListSelected();
-
     } else if (itemId == R.id.nav_intro) {
       router.onNavigationIntroSelected();
 
     }
-
   }
-
 }
